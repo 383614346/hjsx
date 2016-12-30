@@ -1,0 +1,44 @@
+{layout name="layout/layout" /}
+{load href="/static/common/js/jquery-easyui-1.5.1/themes/default/easyui.css" /}
+{load href="/static/common/js/jquery-easyui-1.5.1/themes/icon.css" /}
+{load href="/static/common/js/jquery-easyui-1.5.1/jquery.easyui.min.js" /}
+{load href="/static/manage/js/content/index.js" /}
+<script type="text/javascript">
+	$("#layout_title").html('<li><a href="{:url("index")}" class="icon-home">模型列表</a></li>');
+</script>
+<div style="float:left;width:15%;">
+	<ul id="tt" class="easyui-tree" data-options="url:'{:url("Content/AjaxGetTreeList")}',
+	onClick: function(node){
+	ContentSkipUrl(node);
+				}
+				">
+		
+	</ul>
+</div>
+<div id="divContentBox" style="float:right;width:85%;">
+	<iframe name="ifmContentContent" id="ifmContentContent" src="" frameborder="false" scrolling="auto" style="overflow-x:hidden;border:none;min-height: 600px;width: 100%;height: 100%;"></iframe>
+</div>
+<script type="text/javascript">
+//window.onresize = function(){
+	//var heights = document.documentElement.clientHeight-110;
+	//var widths = document.documentElement.clientWidth-180;
+	//document.getElementById('ifmContentContent').height = heights;
+	//document.getElementById('ifmContentContent').width = widths;
+	//alert(heights);
+	
+	//var widths = $("#divContentBox").width();
+	//var heights = document.documentElement.clientHeight-110;
+	//	alert(widths);
+//	var widths = document.documentElement.clientWidth-180;
+//	document.getElementById('ifmContent').height = heights;
+//	document.getElementById('ifmContent').width = widths;
+	
+	
+//	var heights = $("#divContentBox").height();
+	//$("#ifmContentContent").width(widths);
+	//$("#ifmContentContent").height(heights);
+	//alert(heights);
+//}
+//window.onresize();
+</script>
+<div style="clear:both;"></div>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<title>后台管理</title>
+{include file="common/head_src" /}
+<script type="text/javascript" src="/static/manage/js/platform/Platform.js"></script>
+</head>
+<body>
+	<div class="lefter">
+		<div class="logo">
+			<a href="#" target="_blank">
+				<img src="/static/manage/images/logo.png" alt="后台管理系统" />
+			</a>
+		</div>
+	</div>
+	<div class="righter nav-navicon" id="admin-nav">
+		<div class="mainer">
+			<div class="admin-navbar">
+				<span class="float-right">
+					<a class="button button-little bg-main"
+						href="javascript:SkipUrl('修改资料','{:url('admin/show_update_info')}');">修改资料</a>
+					<a class="button button-little bg-main"
+						href="{:url('index/exit_login')}">退出登陆</a>
+				</span>
+				<ul class="nav nav-inline admin-nav">
+				{volist name="menu_array" id="item"}	
+					<li >
+						<a href="#" class="icon-file-text">{$item.Title}</a>
+						<ul>
+							{volist name="item.ChildArray" id="childItem"}
+							<li class="liSkip" id="li{$childItem.ID}" >
+								<a href="javascript:OnOffChildMenu({$childItem.ID});">{$childItem.Title}</a>
+								<ul id="ul{$childItem.ID}" style="display: none;" class="child_ul">
+								{volist name="childItem.ChildArray" id="ccItem" }
+									<li >
+										<a href="javascript:SkipUrl('{$ccItem.Title}','/manage/{$ccItem.ControllerName}/{$ccItem.ActionName}');">{$ccItem.Title}</a>	
+									</li>
+								{/volist}
+								</ul>
+							</li>
+							{/volist}
+						</ul>
+					</li>				
+				{/volist}
+				</ul>
+			</div>
+			<div class="admin-bread">
+				<span>您好，{$manage_name}，欢迎您的光临。</span>
+				<span id="spanTipInfoBox"></span>
+				
+				<ul class="bread" id="layout_title">
+					<li><a href="#" class="icon-home">首页</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<iframe name="ifmContent" id="ifmContent" src="" frameborder="false" scrolling="auto" style="overflow-x:hidden;border:none;margin-left:180px;"></iframe>
+	<script type="text/javascript">
+		function SkipUrl(title,url){
+			url = _AjaxRoot + url;
+			document.getElementById('ifmContent').src = url;
+			$("#layout_title").html('<li><a href="'+ url +'" class="icon-home">'+ title +'</a></li>');
+		} 
+		
+		window.onresize = function(){
+			var heights = document.documentElement.clientHeight-110;
+			var widths = document.documentElement.clientWidth-180;
+			document.getElementById('ifmContent').height = heights;
+			document.getElementById('ifmContent').width = widths;
+		}
+		window.onresize();
+	</script>
+</body>
+</html>
+
+

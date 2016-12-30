@@ -1,0 +1,41 @@
+{layout name="layout/layout" /}
+<script type="text/javascript">
+	$("#layout_title").html('<li><a href="{:url("index")}" class="icon-home">分类设置</a></li>');
+</script>
+<div class="admin">
+	<form method="post" action="{:url("opt_index")}">
+		<div class="panel admin-panel">
+			<div class="panel-head">
+				<strong>内容列表</strong>
+			</div>
+			<div class="padding border-bottom">
+				<input type="hidden" id="operate" name="operate" value="" />
+				<input type="button" class="button button-small checkall"
+					name="checkall" checkfor="ID[]" value="全选" />
+				<input type="button" class="button button-small border-green"
+					onclick="javascript: GoTo('{:url("show_edit")}');" value="添加" />
+				<input type="submit" class="button button-small border-yellow"
+					onclick="return IndexOpt('您确定要删除所选项？','delete')" value="删除" />
+			</div>
+			<table class="table table-hover">
+				<tr>
+					<th width="45">选择</th>
+					<th>名称</th>
+					<th width="100">操作</th>
+				</tr>
+				{Volist name="list" id="item"}
+				<tr>
+					<td>
+						<input type="checkbox" name="ID[]" value="{$item.ID}" />
+					</td>
+					<td style="text-align: left;">{$item.Title}</td>
+					<td>
+						<a class="button border-blue button-little" href="{:url("update_edit",["id"=>$item["ID"]])}">修改</a>
+					</td>
+				</tr>
+				{/Volist}
+			</table>
+			<div id="pagerContent" class="panel-foot text-center pagination"></div>
+		</div>
+	</form>
+</div>

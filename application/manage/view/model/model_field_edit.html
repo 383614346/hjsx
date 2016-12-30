@@ -1,0 +1,143 @@
+{layout name="layout/layout" /}
+<script type="text/javascript">
+	$("#layout_title").html('<li><a href="javascript:void(0);" class="icon-home">模型字段列表</a></li><li><a href="javascript:;">模型编辑</a></li>');
+</script>
+<div class="admin">
+    <div class="tab">
+        <div class="tab-head">
+            <strong>
+             	编辑
+            </strong>
+            <ul class="tab-nav">
+                <li class="active"><a href="#tab-set">编辑</a></li>
+            </ul>
+        </div>
+        <div class="tab-body">
+            <br />
+            <div class="tab-panel active" id="tab-set">
+            	
+                <form method="post" action="{:url("post_model_field_edit")}" class="form-x" enctype="multipart/form-data"  >                   
+                    <input type="hidden" id="ID" name="ID" value="{$data.ID ?? 0}" />
+                    <div class="form-group">
+                        <div class="label"><label for="readme">所属模型：</label></div>
+                        <div class="field">
+                            <select id="ModelID" name="ModelID" {if condition="!empty($data.ID)"}readonly="readonly"{/if} >
+                            	{volist name="ModelDropDownList" id="item"}
+                            		<option value="{$item.Value}">{$item.Key}</option>
+                            	{/volist}
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="label"><label for="readme">填写类型：</label></div>
+                        <div class="field">
+                            <select id="FieldType" name="FieldType">
+                            	{volist name="FieldTypeDropDownList" id="item"}
+                            		<option value="{$item.Value}">{$item.Key}</option>
+                            	{/volist}
+                            </select>
+                            <script type="text/javascript">
+                            	var FieldType = "{$data.FieldType ?? ""}";
+                            	if(FieldType != ""){
+                            		$("#FieldType").val(FieldType);
+                            	}
+                            </script>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">字段名称：</label></div>
+                        <div class="field">
+                            <input type="text" class="input" id="FieldName" name="FieldName" data-validate="required:请填写字段名称" placeholder="请填写字段名称" value="{$data.FieldName ?? ""}" maxlength="20" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">字段代码：</label></div>
+                        <div class="field">
+                            <input type="text" class="input" id="FieldNameCode" name="FieldNameCode" data-validate="required:请填写字段代码" placeholder="请填写字段代码" value="{$data.FieldNameCode ?? ""}" maxlength="50" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">字段验证类型：</label></div>
+                        <div class="field">
+                        	<table >
+                           	{volist name="FieldNameValidTypeDropDownList" id="item"}
+                           		<tr>
+                           			<td><label><input type="checkbox" data_name="FieldNameValidType" name="FieldNameValidType[]" value="{$item.Value}" />&nbsp;{$item.Key}</label></td>
+                           			<td style="padding-left:5px;">
+                           			<input type="text" id="FieldNameValidTypeTip{$item.Value}" name="FieldNameValidTypeTip{$item.Value}" value="{$item.Tip}" />
+                           			</td>
+                           		</tr> 
+                           	{/volist}
+                           	</table>
+                           	<script type="text/javascript">
+                           		var FieldNameValidType = "{$data.FieldNameValidType ?? ""}";
+                           		var FieldNameValidTypeTip =  "{$data.FieldNameValidTypeTip ?? ""}";
+                           		var FieldNameValidTypeArray = {};
+                           		var FieldNameValidTypeTipArray = {};
+                           		if(FieldNameValidType != ""){
+                           			FieldNameValidTypeArray = FieldNameValidType.split('|');
+                           		}
+                           		if(FieldNameValidTypeTip != ""){
+                           			FieldNameValidTypeTipArray = FieldNameValidTypeTip.split('|');
+                           		}
+                           		var iCount = FieldNameValidTypeArray.length;
+                           		for(var i = 0; i < iCount;i++){
+                           			$("input:checkbox[data_name=FieldNameValidType][value=" + FieldNameValidTypeArray[i] + "]").prop("checked", 'checked');
+                           			$("#FieldNameValidTypeTip"+FieldNameValidTypeArray[i] ).val(FieldNameValidTypeTipArray[i]);
+                           		}
+                           	</script>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="label"><label for="readme">字段提示信息：</label></div>
+                        <div class="field">
+                            <input type="text" class="input" id="FieldNameTip" name="FieldNameTip"  value="{$data.FieldNameTip ?? ""}" maxlength="100" placeholder="用户提示录入注意事项"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">显示宽度：</label></div>
+                        <div class="field">
+                            <input type="text" class="input" id="FieldWidth" name="FieldWidth"  value="{$data.FieldWidth ?? ""}" maxlength="8" placeholder="字段显示宽度，不填不限" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">显示高度：</label></div>
+                        <div class="field">
+                            <input type="text" class="input" id="FieldHeight" name="FieldHeight"  value="{$data.FieldHeight ?? ""}" maxlength="8" value="" placeholder="字段显示高度，不填不限" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">字段最大长度：</label></div>
+                        <div class="field">
+                            <input type="text" class="input" id="FieldNameMaxLength" name="FieldNameMaxLength" placeholder="不填不限" data-validate="integer:格式不正确请填入数字" value="{$data.FieldNameMaxLength ?? ""}" maxlength="6" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">默认值：</label></div>
+                        <div class="field">
+                            <input type="text" class="input" id="FieldDefault" name="FieldDefault"  value="{$data.FieldDefault ?? ""}" placeholder="单选或多选数据用逗号分开，数据组用|分开，例如 选项1,值1|选项2,值2" maxlength="500"  />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">样式类：</label></div>
+                        <div class="field">
+                            <input type="text" class="input" id="FieldClass" name="FieldClass"  value="{$data.FieldClass ?? ""}"  maxlength="50"  />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">排序：</label></div>
+                        <div class="field">
+                        	<input id="Sort" name="Sort" type="text" value="{$data.Sort ?? 0}" class="input" />
+                        </div>
+                    </div>
+                    <div class="form-button">
+                    	<button class="button bg-main" type="submit">提交</button>&nbsp;&nbsp;&nbsp;
+                    	<button class="button bg-main" onclick="javascript:parent.CloseIframe(1)" type="button">关闭窗口</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

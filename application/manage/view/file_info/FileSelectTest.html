@@ -1,0 +1,36 @@
+{layout name="layout/layout" /}
+<script type="text/javascript">
+	$("#layout_title").html('<li><a href="{:url("index")}" class="icon-home">用户列表</a></li><li><a href="javascript:;">用户编辑</a></li>');
+</script>
+<style type="text/css">
+	#tableDescText td{min-width:126px;text-align: left; }
+</style>
+<div class="admin">
+    <div class="tab">
+        <div class="tab-head">
+            <strong>
+             	编辑
+            </strong>
+            <ul class="tab-nav">
+                <li class="active"><a href="#tab-set">编辑</a></li>
+            </ul>
+        </div>
+        <div class="tab-body">
+            <br />
+            <div class="tab-panel active" id="tab-set">
+                <form method="post" action="{:url("post_edit")}" class="form-x" enctype="multipart/form-data"  >                   
+                    <input type="hidden" id="ID" name="ID" value="{$User.ID ?? 0}" />
+                    <div class="form-group">
+                        <div class="label"><label for="readme">单选文件</label></div>
+                        <div class="field">
+                        	<input type="text" id="oneFile" name="oneFile" />
+                        	<a class="button bg-main" type="button" onclick="javascript:ShowIframe(800,500,'{:url("file_info/OneFileSelectBox",array("ValueElementID"=>"oneFile"))}');">选择文件</a>
+                        </div>
+                    </div>
+                    <div class="form-button"><button class="button bg-main" type="button" onclick="">提交</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- {include file="Common/TipDiv" /} -->
+</div>

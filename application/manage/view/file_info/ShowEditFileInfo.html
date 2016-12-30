@@ -1,0 +1,48 @@
+{layout name="layout/layout" /}
+{load href="/static/common/js/webuploader-0.1.5/webuploader.css" /}
+{load href="/static/manage/css/fileinfo/FileInfo.css" /}
+{load href="/static/common/js/webuploader-0.1.5/webuploader.js" /}
+<style type="text/css">
+	#tableDescText td{min-width:126px;text-align: left; }
+</style>
+<div class="admin">
+    <div class="tab">
+    <form method="post" action="{:url("UpdateFileUpload")}" class="form-x" enctype="multipart/form-data" >
+        <div class="tab-body">
+        	文件分类：<select id="FileType" name="FileType">
+        		{volist name="FileTypeList" id="item"}
+        			<option value="{$item.ID}">{$item.Title}</option>
+        		{/volist}
+        	</select>
+        	<script type="text/javascript">
+        		var FileType = "{$FileType ?? ''}";
+        		if(FileType != ""){
+        			$("#FileType").val(FileType);	
+        		}
+        	</script><br /><br />
+			
+				<div id="MsgBox" class="file_info_box">
+					
+					{if condition='!empty($UpdateImgList)'}
+						{volist name="UpdateImgList" id="item"}
+							<div class="item clearfix">
+								<div class="left">
+									<img src="{$item.ShowPath??''}">
+								</div>
+								<div class="right">
+									<input type="hidden" value="{$item.ID}" name="ID[]">
+									<input type="text" value="{$item.Title}" class="title" name="Title[]">
+									<br/>
+									<textarea class="content" name="Content[]">{$item.Content}</textarea>
+								</div>
+							</div>
+						{/volist}
+					{/if}
+				</div>
+				<input id="btnSubmit" type="submit" class="button button-small border-green"
+						value="修改" {if condition='empty($UpdateImgList)'}style="display: none;"{/if} />
+			
+        </div>
+        </form>	
+    </div>
+</div>

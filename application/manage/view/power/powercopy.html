@@ -1,0 +1,48 @@
+{layout name="layout/layout" /}
+<script type="text/javascript">
+	$("#layout_title").html('<li><a href="{:url("PowerCopy")}" class="icon-home">权限拷贝</a></li>');
+</script>
+<div class="admin">
+	<form method="post" action="{:url("opt_index")}">
+		<input type="hidden" id="operate" name="operate" value="" />
+		<div class="panel admin-panel">
+			<div class="panel-head">
+				<strong>权限拷贝</strong>
+			</div>
+			<table class="table table-hover">
+				<tr>
+					<td>
+					
+					拷贝对象：<select id="SourceRole" name="SourceRole" >
+							{volist name="RoleSelectArray" id="item"}
+								<option value="{$item.ID}">{$item.Name}</option>
+							{/volist}
+					</select> 
+					<script type="text/javascript">
+						var SourceRole = "{$SourceRole}";
+						if(SourceRole != ""){
+							$("#SourceRole").val(SourceRole);
+						}
+					</script> 
+					<br /><br />
+					目标对象：<select id="TargetRole" name="TargetRole" >
+							{volist name="RoleSelectArray" id="item"}
+								<option value="{$item.ID}">{$item.Name}</option>
+							{/volist}
+					</select> 
+					<script type="text/javascript">
+						var TargetRole = "{$TargetRole}";
+						if(TargetRole != ""){
+							$("#TargetRole").val(TargetRole);
+						}
+					</script>
+					<br /><br />
+					<input type="submit" value="保存" onclick="SetOpt('PowerCopy')"
+						class="button button-small border-green" />
+						
+					</td>
+				</tr>
+			</table>
+		</div>
+	</form>
+</div>

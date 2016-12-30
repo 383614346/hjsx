@@ -1,0 +1,49 @@
+{layout name="layout/layout" /}
+<script type="text/javascript">
+	$("#layout_title").html('<li><a href="{:url("index")}" class="icon-home">模型列表</a></li><li><a href="javascript:;">模型编辑</a></li>');
+</script>
+<div class="admin">
+    <div class="tab">
+        <div class="tab-head">
+            <strong>
+             	编辑
+            </strong>
+            <ul class="tab-nav">
+                <li class="active"><a href="#tab-set">编辑</a></li>
+            </ul>
+        </div>
+        <div class="tab-body">
+            <br />
+            <div class="tab-panel active" id="tab-set">
+            	
+                <form method="post" action="{:url("post_edit")}" class="form-x" enctype="multipart/form-data"  >                   
+                    <input type="hidden" id="ID" name="ID" value="{$data.ID ?? 0}" />
+                    <div class="form-group">
+                        <div class="label"><label for="readme">所属站点</label></div>
+                        <div class="field">
+                            <select id="SiteID" name="SiteID" {if condition="!empty($data['ID'])"}disabled="disabled"{/if}>
+                            	{volist name="SiteList" id="item"}
+                            		<option value="{$item.Value}">{$item.Key}</option>
+                            	{/volist}
+                            </select>
+                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">模型名称</label></div>
+                        <div class="field">
+                            <input type="text" class="input" id="Name" name="Name" data-validate="required:请填写站点名称" value="{$data.Name ?? ""}" maxlength="25" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">模型代码</label></div>
+                        <div class="field">
+                            <input type="text" class="input" id="Code" name="Code" data-validate="required:请填写站点代码" value="{$data.Code ?? ""}" {if condition="!empty($data.Code)"}disabled="disabled"{/if} maxlength="25" />
+                        </div>
+                    </div>
+                    <div class="form-button"><button class="button bg-main" type="submit">提交</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+{layout name="layout/layout" /}
+<script type="text/javascript">
+	$("#layout_title").html('<li><a href="{:url("index")}" class="icon-home">公共权限列表</a></li><li><a href="javascript:;">编辑</a></li>');
+</script>
+<div class="admin">
+    <div class="tab">
+        <div class="tab-head">
+            <strong>
+             	编辑
+            </strong>
+            <ul class="tab-nav">
+                <li class="active"><a href="#tab-set">编辑</a></li>
+            </ul>
+        </div>
+        <div class="tab-body">
+            <br />
+            <div class="tab-panel active" id="tab-set">
+                <form method="post" action="{:url("post_edit")}" class="form-x" enctype="multipart/form-data"  >                   
+                    <input type="hidden" id="ID" name="ID" value="{$data['ID']?$data['ID']:0}" />                    
+                    <div class="form-group">
+                        <div class="label"><label for="readme">所属菜单</label></div>
+                        <div class="field">
+                        	<select id="MenuID" name="MenuID">
+                        		{volist name="MenuList" id="item"}
+                        			<option value="{$item.ID}">{$item.Title}</option>
+                        		{/volist}
+                        	</select>
+                        	<script type="text/javascript">
+                        		var menuID = "{$data['MenuID']?$data['MenuID']:""}";
+                        		if(menuID != ""){
+                        			$("#MenuID").val(menuID);
+                        		}
+                        	</script>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">权限名称</label></div>
+                        <div class="field">
+                       		 <input type="text" class="input " id="Name" name="Name" maxlength="30" value="{$data['Name']?$data['Name']:""}" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">权限代码</label></div>
+                        <div class="field">
+                        	<input type="text" class="input" id="Code" name="Code" maxlength="80" value="{$data['Code']?$data['Code']:""}" />
+                        </div>
+                    </div>
+                    <div class="form-button"><button class="button bg-main" type="submit">保存</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

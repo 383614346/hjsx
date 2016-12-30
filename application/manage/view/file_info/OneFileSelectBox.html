@@ -1,0 +1,31 @@
+{layout name="layout/layout" /}
+{load href="/static/manage/css/fileinfo/OneFileSelectBox.css" /}
+{load href="/static/manage/js/fileinfo/OneFileSelectBox.js" /}
+<script type="text/javascript">
+	var valueElementID = "{$ValueElementID}";
+	var boxElementID = "{$BoxElementID}";
+</script>
+<div class="select_box clearfix">
+	<div class="serach_box">
+		文件分类:<select id="SearchFileType" name="SearchFileType">
+				<option value="-1">不限</option>
+				{volist name="FileTypeList" id="item"}
+        			<option value="{$item.ID}">{$item.Title}</option>
+        		{/volist}
+			</select>&nbsp;
+			<script type="text/javascript">
+				var SearchFileType = "{$Search.FileType?? ''}";
+				if(SearchFileType != ""){
+					$("#SearchFileType").val(SearchFileType);
+				}
+			</script>
+			文件名称:<input type="text" id="SearchTitle" name="SearchTitle" value="{$Search.Title ?? ''}" />&nbsp;
+			<a class="button button-small border-green"
+				onclick="javascript:AjaxGetFileInfoList(1,12)"  >搜索</a>
+			<a class="button button-small border-green"
+				onclick="javascript:parent.CloseIframe();"  >关闭窗口</a>
+	</div>
+	<div class="serach_img_box clearfix">
+	</div>
+	<div id="page" class="pagination clearfix"></div>
+</div>

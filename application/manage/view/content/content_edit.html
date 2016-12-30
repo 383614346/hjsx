@@ -1,0 +1,59 @@
+{layout name="layout/layout" /}
+{load href="/static/manage/js/common/ueditor/ueditor.config.js" /}
+{load href="/static/manage/js/common/ueditor/ueditor.all.min.js" /}
+{load href="/static/manage/js/common/ueditor/lang/zh-cn/zh-cn.js" /}
+<ipnut type="hidden" id="navigation_id" name="navigation_id" value="{$navigation_id}" />
+				<ipnut type="hidden" id="model_id" name="model_id" value="{$model_id}" />
+<script type="text/javascript">
+	$("#layout_title").html('<li><a href="{:url("content_list",["model_id" => $model_id,"navigation_id" => $navigation_id])}" class="icon-home">列表</a></li><li><a href="javascript:;">编辑</a></li>');
+</script>
+<div class="admin">
+    <div class="tab">
+        <div class="tab-head">
+            <strong>
+             	编辑
+            </strong>
+            <ul class="tab-nav">
+                <li class="active"><a href="#tab-set">编辑</a></li>
+            </ul>
+        </div>
+        <div class="tab-body">
+            <br />
+            <div class="tab-panel active" id="tab-set">
+                <form method="post" action="{:url("post_content_edit")}" class="form-x" enctype="multipart/form-data"  >
+                <input type="hidden" id="navigation_id" name="navigation_id" value="{$navigation_id}" />
+				<input type="hidden" id="model_id" name="model_id" value="{$model_id}" />                   
+                <input type="hidden" id="ID" name="ID" value="{$data.ID ?? 0}" />
+                	<div class="form-group">
+                        <div class="label"><label for="readme">所属栏目：</label></div>
+                        <div class="field">
+                            <select id="NavigationID" name="NavigationID">
+                            	{volist name="NavigationDropDownList" id="item"}
+                            		<option value="{$item.ID}">{$item.Title}</option>
+                            	{/volist}
+                            </select>
+                        </div>
+                    </div>
+                	<div class="form-group">
+                        <div class="label"><label for="readme">标题：</label></div>
+                        <div class="field">
+                            <input type="text" class="input" id="Title" name="Title" value="{$data.Title ?? ''}" />
+                        </div>
+                    </div>
+                    {$EditHtml}
+                    <div class="form-group">
+                        <div class="label"><label for="readme">排序：</label></div>
+                        <div class="field">
+                            <input type="text" class="input input_sort" id="Sort" name="Sort" value="{$data.Sort ?? 0}" />
+                        </div>
+                    </div>
+                    {$EditDefaultHtml}
+                    <div class="form-button">
+                    	<button class="button bg-main" type="submit">提交</button>
+                    	<button class="button bg-main" onclick="javascript:parent.CloseIframe(1)" type="button">关闭窗口</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

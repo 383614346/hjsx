@@ -1,0 +1,139 @@
+{layout name="layout/layout" /}
+{load href="/static/manage/js/navigation/edit.js" /}
+<script type="text/javascript">
+	$("#layout_title").html('<li><a href="{:url("index")}" class="icon-home">菜单列表</a></li><li><a href="javascript:;">菜单编辑</a></li>');
+</script>
+<div class="admin">
+    <div class="tab">
+        <div class="tab-head">
+            <strong>
+             	编辑
+            </strong>
+            <ul class="tab-nav">
+                <li class="active"><a href="#tab-set">编辑</a></li>
+            </ul>
+        </div>
+        <div class="tab-body">
+            <br />
+            <div class="tab-panel active" id="tab-set">
+                <form method="post" action="{:url("post_edit")}" class="form-x" enctype="multipart/form-data"  >                   
+                    <input type="hidden" id="ID" name="ID" value="{$data.ID ?? 0}" />
+                    <div class="form-group">
+                        <div class="label"><label for="readme">所属站点</label></div>
+                        <div class="field">
+                            <select id="SiteID" name="SiteID" onchange="javascript:AjaxGetModelDropDownList();">
+                            	{volist name="SiteDropDownList" id="item"}
+                            		<option value="{$item.Value}">{$item.Key}</option>
+                            	{/volist}
+                            </select>
+                            <script type="text/javascript">
+                            	var SiteID = "{$data.SiteID ?? ""}";
+                            	if(SiteID != ""){
+                            		$("#SiteID").val(SiteID);
+                            	}
+                            </script>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">所属模型</label></div>
+                        <div class="field">
+                            <select id="ModelID" name="ModelID">
+                            	{volist name="ModelDropDownList" id="item"}
+                            		<option value="{$item.Value}">{$item.Key}</option>
+                            	{/volist}
+                            </select>
+                            <script type="text/javascript">
+                            	var ModelID = "{$data.ModelID ?? ""}";
+                            	if(ModelID != ""){
+                            		$("#ModelID").val(ModelID);
+                            	}
+                            </script>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">所属菜单</label></div>
+                        <div class="field">
+                            <select id="ParentID" name="ParentID">
+                            	<OPTION value="0">根目录</OPTION>
+                            	{volist name="ParentID_drop_down_array" id="item"}
+                            		<option value="{$item.ID}">{$item.Title}</option>
+                            	{/volist}
+                            </select>
+                            <script type="text/javascript">
+                            	var parentID = "{$data.ParentID ?? ""}";
+                            	if(parentID == ""){
+                            		parentID = 0;
+                            	}
+                            	$("#ParentID").val(parentID);
+                            </script>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">菜单名称</label></div>
+                        <div class="field">
+                            <input type="text" class="input" id="Title" name="Title" data-validate="required:请填写菜单名称" value="{$data.Title ?? ''}" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">默认显示图片</label></div>
+                        <div class="field">
+                            <img id="ShowDefaultImage" width="120" />
+                        	<input type="text" id="DefaultImage" name="DefaultImage" value="{$data.DefaultImage ?? ""}" />
+                        	<a class="button bg-main" type="button" onclick="javascript:ShowIframe(800,500,'{:url("ImageInfo/OneImageSelectBox",array("BoxElementID"=>"ShowDefaultImage","ValueElementID"=>"DefaultImage"))}');">选择图片</a>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">选中显示图片</label></div>
+                        <div class="field">
+                            <img id="ShowHoverImage" width="120" />
+                        	<input type="text" id="HoverImage" name="HoverImage" value="{$data.HoverImage ?? ""}" />
+                        	<a class="button bg-main" type="button" onclick="javascript:ShowIframe(800,500,'{:url("ImageInfo/OneImageSelectBox",array("BoxElementID"=>"ShowHoverImage","ValueElementID"=>"HoverImage"))}');">选择图片</a>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">展示控制器</label></div>
+                        <div class="field">
+                            <input type="text" class="input" id="Controller" name="Controller" value="{$data.Controller ?? ""}" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">展示方法</label></div>
+                        <div class="field">
+                            <input type="text" class="input" id="Action" name="Action" value="{$data.Action ?? ""}" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">后台控制器</label></div>
+                        <div class="field">
+                            <input type="text" class="input" id="BackController" name="BackController" value="{$data.BackController ?? ""}" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">后台方法</label></div>
+                        <div class="field">
+                            <input type="text" class="input" id="BackAction" name="BackAction" value="{$data.BackAction ?? ""}" />
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="form-group">
+                        <div class="label"><label for="readme">跳转地址</label></div>
+                        <div class="field">
+                            <input type="text" class="input" id="Url" name="Url"  value="{$data.Url ?? ''}" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">排序</label></div>
+                        <div class="field">
+                            <input type="text" class="input input_sort" id="Sort" name="Sort" value="{$data.Sort ?? 0}" />
+                        </div>
+                    </div>
+                    <div class="form-button">
+                    	<button class="button bg-main" type="submit">提交</button>
+                    	<button class="button bg-main" onclick="javascript:parent.CloseIframe(1)" type="button">关闭窗口</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

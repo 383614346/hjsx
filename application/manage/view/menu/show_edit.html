@@ -1,0 +1,61 @@
+{layout name="layout/layout" /}
+<script type="text/javascript">
+	$("#layout_title").html('<li><a href="{:url("index")}" class="icon-home">菜单列表</a></li><li><a href="javascript:;">菜单编辑</a></li>');
+</script>
+<div class="admin">
+    <div class="tab">
+        <div class="tab-head">
+            <strong>
+             	编辑
+            </strong>
+            <ul class="tab-nav">
+                <li class="active"><a href="#tab-set">编辑</a></li>
+            </ul>
+        </div>
+        <div class="tab-body">
+            <br />
+            <div class="tab-panel active" id="tab-set">
+                <form method="post" action="{:url("post_edit")}" class="form-x" enctype="multipart/form-data"  >                   
+                    <input type="hidden" id="ID" name="ID" value="0" />
+                    
+                    <div class="form-group">
+                        <div class="label"><label for="readme">菜单名称</label></div>
+                        <div class="field">
+                            <input type="text" class="input" id="Title" name="Title" data-validate="required:请填写菜单名称" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">所属菜单</label></div>
+                        <div class="field">
+                            <select id="ParentID" name="ParentID">
+                            	<OPTION value="0">根目录</OPTION>
+                            	{volist name="ParentID_drop_down_array" id="item"}
+                            		<option value="{$item.ID}">{$item.Title}</option>
+                            	{/volist}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">控制器</label></div>
+                        <div class="field">
+                            <input type="text" class="input" id="ControllerName" name="ControllerName" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">方法</label></div>
+                        <div class="field">
+                            <input type="text" class="input" id="ActionName" name="ActionName" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">排序</label></div>
+                        <div class="field">
+                            <input type="text" class="input input_sort" id="Sort" name="Sort" value="" />
+                        </div>
+                    </div>
+                    <div class="form-button"><button class="button bg-main" type="submit">提交</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

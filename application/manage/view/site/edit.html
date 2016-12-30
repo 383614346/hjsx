@@ -1,0 +1,48 @@
+{layout name="layout/layout" /}
+<script type="text/javascript">
+	$("#layout_title").html('<li><a href="{:url("index")}" class="icon-home">站点列表</a></li><li><a href="javascript:;">站点编辑</a></li>');
+</script>
+<div class="admin">
+    <div class="tab">
+        <div class="tab-head">
+            <strong>
+             	编辑
+            </strong>
+            <ul class="tab-nav">
+                <li class="active"><a href="#tab-set">编辑</a></li>
+            </ul>
+        </div>
+        <div class="tab-body">
+            <br />
+            <div class="tab-panel active" id="tab-set">
+                <form method="post" action="{:url("post_edit")}" class="form-x" enctype="multipart/form-data"  >                   
+                    <input type="hidden" id="ID" name="ID" value="{$data.ID ?? 0}" />
+                    <div class="form-group">
+                        <div class="label"><label for="readme">站点名称</label></div>
+                        <div class="field">
+                            <input type="text" class="input" id="Name" name="Name" data-validate="required:请填写站点名称" value="{$data.Name ?? ""}" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">站点代码</label></div>
+                        <div class="field">
+                            <input type="text" class="input" id="Code" name="Code" data-validate="required:请填写站点代码" value="{$data.Code ?? ""}" {if condition="!empty($data.Code)"}disabled="disabled"{/if} />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label"><label for="readme">是否默认</label></div>
+                        <div class="field">
+                        	是&nbsp;<input type="radio" name="IsDefault" value="1" />&nbsp;
+                        	否&nbsp;<input type="radio" name="IsDefault" value="0" checked="checked" />
+                        	<script type="text/javascript">
+                        		var IsDefault = "{$data.IsDefault ?? ""}";
+                        		$("input:radio[name=IsDefault][value=" + IsDefault + "]").prop("checked", 'checked');
+                        	</script>
+                        </div>
+                    </div>
+                    <div class="form-button"><button class="button bg-main" type="submit">提交</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

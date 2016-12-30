@@ -1,0 +1,63 @@
+{layout name="layout/layout" /}
+{load href="/static/manage/css/power/index.css" /}
+{load href="/static/manage/js/power/index.js" /}
+<script type="text/javascript">
+	$("#layout_title").html('<li><a href="{:url("index")}" class="icon-home">权限配置</a></li>');
+</script>
+<div class="admin">
+	<form method="post" action="{:url("opt_index")}">
+		<input type="hidden" id="operate" name="operate" value=""/>
+		<div class="panel admin-panel">
+			<div class="panel-head">
+				<strong>编辑</strong>
+			</div>
+			<div class="padding border-bottom">
+				角色：<select id="SerachRole" name="SerachRole" onchange="javascript:ChangeRole()">
+					{volist name="RoleSelectArray" id="item"}
+						<option value="{$item.ID}">{$item.Name}</option>
+					{/volist}
+				</select>
+				<script type="text/javascript">
+					var SerachRole = "{$SerachRole}";
+					if(SerachRole != ""){
+						$("#SerachRole").val(SerachRole);
+					}
+				</script>
+				<input type="submit" value="保存" onclick="SetOpt('save')" class="button button-small border-green" />
+			</div>
+			<table class="table table-hover">
+				<tr>
+					<td>
+						<table class="PowerTable">
+							{volist name="ShowPowerArray" id="item"}
+								{if condition="$item.Type eq 1"}
+									<tr>
+										<td style="padding-left:{php} echo (20 * $item["Level"] ) {/php}px;">
+											<span class="fu"></span>
+											<span class="title"><input type="checkbox" id="{$item.ID}__Parent" currentid="{$item.ID}" parent="{$item.ParentID}" class="ckcParent" /><label class="ckcTarget" for="{$item.ID}__Parent">{$item.Title}({$item.ControllerName})</label></span>
+										</td>
+									</tr>
+									{else/}
+									<tr>
+										<td style="padding-left:{php} echo (20 * $item["Level"] ) {/php}px;">
+											{volist name="item.Child" id="citem"}
+												
+												<input type="checkbox" name="chePower[]" value="{$item.ID}__{$citem.Code}" parent="{$citem.ParentID}" />&nbsp;<label class="ckcTarget" for="{$item.ID}__{$citem.Code}">{$citem.Name}({$citem.Code})</label>&nbsp;&nbsp;
+											{/volist}
+										</td>
+									</tr>
+								{/if}
+							{/volist}
+						</table>		
+					</td>
+				</tr>
+			</table>
+		</div>
+	</form>
+	<script type="text/javascript">
+		var jsonData = {$DefaultList};
+		$.each(jsonData,function(i,item){
+			$("input[value='"+ item.MenuID +"__"+ item.Code +"']").prop("checked",true);
+		});
+	</script>
+</div>

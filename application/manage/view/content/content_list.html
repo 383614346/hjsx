@@ -1,0 +1,51 @@
+{layout name="layout/layout" /}
+<script type="text/javascript">
+	$("#layout_title").html('<li><a href="{:url("index")}" class="icon-home">菜单设置</a></li>');
+</script>
+<div class="admin">
+	<form method="post" action="{:url("opt_index")}">
+		<div class="panel admin-panel">
+			<div class="panel-head">
+				<strong>内容列表</strong>
+			</div>
+			<div class="padding border-bottom">
+				<input type="hidden" id="navigation_id" name="navigation_id" value="{$navigation_id}" />
+				<input type="hidden" id="model_id" name="model_id" value="{$model_id}" />
+				<input type="hidden" id="operate" name="operate" value="" />
+				<input type="button" class="button button-small checkall"
+					name="checkall" checkfor="ID[]" value="全选" />
+				<input type="button" class="button button-small border-green"
+					onclick="javascript: ShowIframe(800,500,'{:url("content/content_edit",["model_id" => $model_id,"navigation_id" => $navigation_id])}');" value="添加" />
+					<input type="submit" class="button button-small border-green"
+					onclick="return IndexOpt('您确定要排序所选项？','sort')" value="排序" />
+				<input type="submit" class="button button-small border-yellow"
+					onclick="return IndexOpt('您确定要删除所选项？','delete')" value="删除" />
+				
+			</div>
+
+			<table class="table table-hover">
+				<tr>
+					<th width="45">选择</th>
+					<th>菜单名称</th>
+					<th width="45">排序</th>
+					<th width="100">操作</th>
+				</tr>
+				{Volist name="list" id="item"}
+				<tr>
+					<td>
+						<input type="checkbox" name="ID[]" value="{$item.ID}" />
+					</td>
+					<td >{$item.Title}</td>
+					<td>
+						<input name="Sort{$item.ID}" type="text" value="{$item.Sort}" class="sort" />
+					</td>
+					<td>
+						<a class="button border-blue button-little" href="javascript:ShowIframe(800,500,'{:url("content/content_edit",["id" => $item["ID"],"model_id" => $model_id,"navigation_id" => $navigation_id])}');">修改</a>
+					</td>
+				</tr>
+				{/Volist}
+			</table>
+			<div id="pagerContent" class="panel-foot text-center pagination">{$page ?? ""}</div>
+		</div>
+	</form>
+</div>

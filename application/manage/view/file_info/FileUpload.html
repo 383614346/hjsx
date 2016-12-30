@@ -1,0 +1,71 @@
+{layout name="layout/layout" /}
+{load href="/static/common/js/webuploader-0.1.5/webuploader.css" /}
+{load href="/static/manage/css/fileinfo/FileInfo.css" /}
+{load href="/static/common/js/webuploader-0.1.5/webuploader.js" /}
+{load href="/static/manage/js/fileinfo/FileUpload.js" /}
+<script type="text/javascript">
+	$("#layout_title").html('<li><a href="{:url("index")}" class="icon-home">文件列表</a></li><li><a href="javascript:;">文件上传</a></li>');
+	function ChangeFileType(){
+		var fileType = $("#FileType").val();
+		url = "{:url("FileUpload")}?FileType=" + fileType;
+		window.location.href = url;
+	}
+	FileType = "{$FileType ?? ''}";
+</script>
+<style type="text/css">
+	#tableDescText td{min-width:126px;text-align: left; }
+</style>
+<div class="admin">
+    <div class="tab">
+        <div class="tab-head">
+            <strong>
+             	文件上传
+            </strong>
+            <ul class="tab-nav">
+                <li class="active"><a href="#tab-set">文件上传</a></li>
+            </ul>
+        </div>
+        <div class="tab-body">
+        	文件分类：<select id="FileType" name="FileType" onchange="javascript:ChangeFileType();">
+        		{volist name="FileTypeList" id="item"}
+        			<option value="{$item.ID}">{$item.Title}</option>
+        		{/volist}
+        	</select>
+        	<script type="text/javascript">
+        		if(FileType != ""){
+        			$("#FileType").val(FileType);	
+        		}
+        	</script><br /><br />
+        	<div id="uploader" class="wu-example">
+			    <div class="btns">
+			        <div id="picker">选择文件</div>
+					<button id="ctlBtn" class="btn btn-default">开始上传</button>
+				</div>
+				<!--用来存放文件信息-->
+			    <div id="thelist" class="uploader-list"></div>
+			</div>
+			<form method="post" action="{:url("EditFileUpload")}" class="form-x" enctype="multipart/form-data" >
+				<div id="MsgBox" class="file_info_box">
+					
+					{if condition='!empty($UpdateImgList)'}
+						{volist name="UpdateImgList" id="item"}
+							<div class="item clearfix">
+								<div class="left">
+									<img src="{$item.ShowPath??''}">
+								</div>
+								<div class="right">
+									<input type="hidden" value="{$item.ID}" name="ID[]">
+									<input type="text" value="{$item.Title}" class="title" name="Title[]">
+									<br/>
+									<textarea class="content" name="Content[]">{$item.Content}</textarea>
+								</div>
+							</div>
+						{/volist}
+					{/if}
+				</div>
+				<input id="btnSubmit" type="submit" class="button button-small border-green"
+						value="修改" {if condition='empty($UpdateImgList)'}style="display: none;"{/if} />
+			</form>	
+        </div>
+    </div>
+</div>
