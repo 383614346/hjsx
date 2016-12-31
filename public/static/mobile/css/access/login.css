@@ -1,0 +1,86 @@
+body{background: #f7efe1;}
+.top_left{
+    background: #efe5db;
+    width: 100%;
+    height: 6rem;
+    position: relative;
+    top: 0;
+    left: -14rem;
+    transform: rotate(-30deg);
+	z-index: 1;
+}
+.login{
+	width: 80%;z-index: 9;margin: -0.5rem auto 0;
+	position: relative;
+}
+.form_box{width:82%;margin:0 auto;}
+.form_box .input_box{
+	border-top:solid 0.1rem #9f9f9f;
+	border-left:solid 0.1rem #9f9f9f;
+	border-right:solid 0.1rem #9f9f9f;
+	border-radius:0.5rem;
+	height: 4rem;
+	margin-top:3rem;
+	background:#fff;
+	
+}
+.form_box .input_box .people_icon{
+        width: 2rem;
+    top: -1.2rem;
+    left: 1rem;
+    position: relative;
+}
+.form_box .input_box .split{
+    margin: 1rem 0 0 1.5rem;
+    height: 2rem;
+    width: 0.1rem;
+    background: #b1b1b1;
+    display: inline-block;
+}
+.form_box .input_box .input_text{
+	height: 3.8rem;
+    width: 25rem;
+    position: relative;
+    top: -0.4rem;
+    background: none;
+	outline: none;
+}
+.form_box .input_box .lock_icon{
+	width: 2rem;
+    top: -1.2rem;
+    left: 1rem;
+    position: relative;
+}
+.form_box .input_box .input_password{
+	height: 3.8rem;
+    width: 25rem;
+    position: relative;
+    top: -0.4rem;
+    background: none;
+}
+.form_box .input_box .password_icon{
+	width: 2rem;
+    top: -1.6rem;
+    left: 1rem;
+    position: relative;
+}
+.login_button{
+	text-align: center;letter-spacing: 1rem;color:#fff;
+	
+background: linear-gradient(top, #fda15c, #eb893f);
+background: -moz-linear-gradient(top, #fda15c, #eb893f);
+background: -webkit-linear-gradient(top, #fda15c, #eb893f);
+background: -o-linear-gradient(top, #fda15c, #eb893f);
+border-radius:0.5rem;display: block;
+margin-top:3rem;height: 5rem;line-height: 5rem;
+font-size:2rem;
+}
+.register_button{text-align: center;letter-spacing: 0.2rem;
+border-top:solid 0.1rem #3095a6;
+border-left:solid 0.1rem #3095a6;
+border-right:solid 0.1rem #3095a6;
+color:#3095a6;
+background:#fff;border-radius:0.5rem;display: block;
+margin-top:3rem;height: 5rem;line-height: 5rem;
+font-size:2rem;
+}

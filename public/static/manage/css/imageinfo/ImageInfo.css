@@ -1,0 +1,11 @@
+.file_info_box{}
+.file_info_box .left{width:140px;float:left;text-align: center;}
+.file_info_box .left > img{width:120px;}
+.file_info_box .right{width:600px;float:left;text-align: left;}
+.file_info_box .right .title{width:200px;}
+.file_info_box .right .content{width:200px;height:90px;margin-top:10px;}
+.img_list_box{}
+.img_list_box .item{width:120px;float:left;margin:15px 0 0 15px;}
+.img_list_box .item .img img{max-height:190px;max-width:100%;border:solid 1px #rerere;}
+.img_list_box .item .title{font-size:12px;text-align: center;overflow: hidden;}
+.img_list_box .item .checkbox{text-align: center;}

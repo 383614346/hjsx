@@ -1,0 +1,81 @@
+body{padding-bottom: 2rem;}
+.user_box{padding:3rem 0 4rem 0;background:#fda15c;}
+.user_box .head_box{
+	       border: solid 0.35rem #ebccb0;
+    border-radius: 5rem;
+    background: #ebccb0;
+    width: 10rem;
+    height: 10rem;
+    margin: 0 auto;
+}
+.user_box .head_box img{border-radius: 5rem;}
+.user_box .company{text-align: center;color:#fff;margin-top:1.5rem;}
+.my_order_box{margin:1rem auto 0; width:95%;
+	border:solid 0.1rem #d1d1d1;
+	border-radius:0.9rem;background:#fff;
+	padding:2rem 1rem 1rem;
+}
+.my_order_box .order_head{padding:0 0 2rem 0;}
+.my_order_box .order_head .left{float:left;display: inline-block;color:#000;font-weight: bold;
+	font-size: 1.8rem;
+}
+.my_order_box .order_head .right{float:right;display: inline-block;
+color:#000000;font-size: 1.8rem;
+}
+.my_order_box .order_head .right .right_icon{
+	width:1rem;
+} 
+.my_order_box .split{border-top:solid 0.1rem #9a9a9a;}
+.my_order_box .status_list{margin-top:1rem;}
+.my_order_box .status_list > a{
+	display: inline-block;
+	width: 30%;
+	text-align: center;
+	color:#0b0b0b;
+	line-height: 3rem;
+}
+.my_order_box .status_list .icon{
+	width:4rem;
+}
+.my_order_box .status_list .wait_dispatching{
+	width:3.6rem;
+}
+.navigation_box{
+	margin:1rem auto 0; 
+	width:95%;
+	border:solid 0.1rem #d1d1d1;
+	border-radius:0.9rem;
+	background:#fff;
+	padding:0 0 2rem 0;
+}
+.navigation_box > a{
+	display: block;
+	color:#000;
+	font-weight:bold;
+	font-size:1.7rem;
+	width:95%;
+	margin:2rem auto 0;
+}
+.navigation_box .right_icon{width:1.1rem;float: right;}
+.navigation_box .split{width:95%;margin:1.7rem auto 0;
+border-top:solid 0.1rem #838383;
+}
+.navigation_box .bag_icon{width:2rem;position: relative;top:0.1rem;}
+.navigation_box .shopping_car_icon{width:2rem;position: relative;top:0.1rem;}
+.navigation_box .position_icon{width:2rem;position: relative;top:0.3rem;}
+.navigation_box .qrcode_icon{width:2rem;position: relative;top:0.1rem;}
+.navigation_box .servicing_icon{width:2rem;position: relative;top:0.1rem;}
+.exit_button{width:95%;height:4.5rem;
+font-size:2rem;
+letter-spacing:0.2rem;
+	line-height:4.5rem;
+margin:1rem auto 0;
+display:block;text-align:center;
+border-radius:0.9rem;
+background: linear-gradient(top, #fda05a, #e7863d);
+background: -moz-linear-gradient(top, #fda05a, #e7863d);
+background: -webkit-linear-gradient(top, #fda05a, #e7863d);
+background: -o-linear-gradient(top, #fda05a, #e7863d);
+color:#fff;
+}
+

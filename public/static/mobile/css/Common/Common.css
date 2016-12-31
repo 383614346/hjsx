@@ -1,0 +1,78 @@
+/* CSS Document */
+/*common
+	font-family: '微软雅黑','宋体','Microsoft Yahei',arial,  'Hiragino Sans GB',  \5b8b\4f53, Tahoma, Arial, Helvetica, STHeiti !important;
+*/
+*{margin:0;padding:0;border:0;font-size:1.5rem;color:#373737; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);box-sizing:border-box;
+font-family: '微软雅黑','宋体','Microsoft Yahei',arial,  'Hiragino Sans GB',  \5b8b\4f53, Tahoma, Arial, Helvetica, STHeiti !important;
+}
+body{background:#eeeeee;}
+.body{width:100%;}
+a{text-decoration:none;border:0;}
+a {outline: none;}
+ul,ol,li{list-style:none;}
+header,footer,aside,dialog,small,address,section,article,nav,canvas{display:block;box-sizing:border-box;}
+html,body{color:#333;line-height: 1;}/*background-color: #eee;*/
+img{width:100%;max-width:100%;vertical-align:bottom;}
+.hightlight{color:#e0552e;}
+.hide{display:hidden;}
+.clear{clear:both;}
+.clearfix:after {
+    content: ' ';
+    height: 0;
+    overflow: hidden;
+    clear:both;
+    display: block;
+}
+.clearfix {
+    *zoom:1;
+}
+
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+	font-size: 1rem;
+}
+
+i, em {
+	font-style: normal;
+}
+/*显示二维码*/
+.qrcode_box_shadow{
+	width:100%;height: 100%;position: absolute;
+left: 0;top: 0;
+background:#323232;opacity:0.8;
+}
+.qrcode_box{width:100%;height: 100%;position: absolute;
+left: 0;top: 0;z-index: 9;
+}
+.qrcode_box .userinfo_box{
+	opacity:1;
+	width:95%;height:80%;position:absolute;top:50%;left:50%; margin:-50% 0 0 -47.5%;background: #fff;}
+.qrcode_box .userinfo_box .user_head{
+	width:92%;
+	margin:2rem auto 0;
+}
+.qrcode_box .userinfo_box .user_head .left{
+	float:left;
+	width:20%;
+}
+.qrcode_box .userinfo_box .user_head .right{
+	float:right;
+	width:75%;
+}
+.qrcode_box .userinfo_box .user_head .right .user_name{
+	color:#000;
+	font-size:2.2rem;
+}
+.qrcode_box .userinfo_box .user_head .right .user_code{
+	color:#444444;
+	margin-top:1rem;
+}
+.qrcode_box .userinfo_box .user_qrcode{width:80%;margin:2rem auto 0;}
+.qrcode_box .userinfo_box .user_qrcode .tip{color:#828282;text-align: center;margin-top:1rem;}
